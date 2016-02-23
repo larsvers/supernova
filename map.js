@@ -453,7 +453,7 @@ function dataprep(err, worlddata, animaldata, countrytranslationdata) {
 
 	// vis.stats.initContainer();
 
-	// kick off teh supernova - added
+	// kick off the supernova - added
 	setTimeout(function(){ finalTurn1(); },2000);
 
 
