@@ -1,0 +1,620 @@
+
+/* colours: 
+
+yellow: 
+#FFED32; found flag 
+
+blues:
+#D9EBFA; background
+#050FE8; very good zingy blue
+#02039B; another slightly darker zingy blue
+
+green:
+#00CC00; green for animals
+
+red:
+#C03228; maybe for animals?
+
+orange:
+darkorange for country focus
+orange for animal ranges
+
+sphere gradient attempts:
+
+	radial-gradient: very subtle
+	<radialGradient id="grad1" cx="70%" cy="30%" r="60%">
+	  <stop offset="0%" style="stop-color:#0074D9;stop-opacity:1" />
+	  <stop offset="25%" style="stop-color:#015ADC;stop-opacity:1" />
+	  <stop offset="50%" style="stop-color:#0241E0;stop-opacity:1" />
+	  <stop offset="75%" style="stop-color:#0328E4;stop-opacity:1" />
+	  <stop offset="100%" style="stop-color:#050FE8;stop-opacity:1" />
+
+	radial-gradient: a little less subtle
+	<radialGradient id="grad1" cx="70%" cy="30%" r="60%">
+	  <stop offset="0%" style="stop-color:#4192D9;stop-opacity:1" />
+	  <stop offset="25%" style="stop-color:#3271DC;stop-opacity:1" />
+	  <stop offset="50%" style="stop-color:#2350E0;stop-opacity:1" />
+	  <stop offset="75%" style="stop-color:#142FE4;stop-opacity:1" />
+	  <stop offset="100%" style="stop-color:#050FE8;stop-opacity:1" />
+
+
+*/
+
+/* other fonts tried but not used
+
+@font-face {
+	font-family: 'Kranky';
+	src:
+		local('Kranky.ttf'),
+		url('fonts/Kranky.ttf');
+}
+
+@font-face {
+	font-family: 'ShortStack';
+	src:
+		local('ShortStack-Regular.ttf'),
+		url('fonts/ShortStack-Regular.ttf');
+}
+
+@font-face {
+	font-family: 'WalterTurncoat';
+	src:
+		local('WalterTurncoat.ttf'),
+		url('fonts/WalterTurncoat.ttf');
+}
+
+@font-face {
+	font-family: 'KBZipaDeeDooDah';
+	src:
+		local('KBZipaDeeDooDah.ttf'),
+		url('fonts/KBZipaDeeDooDah.ttf');
+}
+
+@font-face {
+	font-family: 'scribbleboxdemo';
+	src:
+		local('scribbleboxdemo.ttf'),
+		url('fonts/scribbleboxdemo.ttf');
+}
+
+@font-face {
+	font-family: 'rayando';
+	src:
+		local('rayando.ttf'),
+		url('fonts/rayando.ttf');
+}
+
+@font-face {
+	font-family: '2Dumb';
+	src:
+		local('2Dumb.ttf'),
+		url('fonts/german/2Dumb.ttf');
+}
+
+@font-face {
+	font-family: 'Barrio-Regular';
+	src:
+		local('Barrio-Regular.otf'),
+		url('fonts/german/Barrio-Regular.otf');
+}
+
+@font-face {
+	font-family: 'burnstown_dam';
+	src:
+		local('burnstown_dam.otf'),
+		url('fonts/german/burnstown_dam.otf');
+}
+
+@font-face {
+	font-family: 'comic_zine_ot';
+	src:
+		local('comic_zine_ot.otf'),
+		url('fonts/german/comic_zine_ot.otf');
+}
+
+@font-face {
+	font-family: 'FFF_Tusj';
+	src:
+		local('FFF_Tusj.ttf'),
+		url('fonts/german/FFF_Tusj.ttf');
+}
+
+@font-face {
+	font-family: 'Landliebe';
+	src:
+		local('Landliebe.ttf'),
+		url('fonts/german/Landliebe.ttf');
+}
+
+@font-face {
+	font-family: 'LearningCurve_OT';
+	src:
+		local('LearningCurve_OT.otf'),
+		url('fonts/german/LearningCurve_OT.otf');
+}
+
+@font-face {
+	font-family: 'LeckerliOne-Regular';
+	src:
+		local('LeckerliOne-Regular.otf'),
+		url('fonts/german/LeckerliOne-Regular.otf');
+}
+
+@font-face {
+	font-family: 'Pacifico';
+	src:
+		local('Pacifico.ttf'),
+		url('fonts/german/Pacifico.ttf');
+}
+
+@font-face {
+	font-family: 'PAETRI';
+	src:
+		local('PAETRB__.ttf'),
+		url('fonts/german/PAETRB__.ttf');
+}
+
+*/
+
+@font-face {
+	font-family: 'helsinki';
+	src:
+		local('helsinki.ttf'),
+		url('fonts/helsinki.ttf');
+}
+
+
+
+/* -- general ------------------------------------------------------------------------ */
+
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+} /* universal box-sizing (padding and border are part of width) */
+
+
+body {
+	background-color: #D9EBFA;
+	font-family: 'helsinki', sans-serif;
+/*	border: 1px solid blue;*/
+}
+
+div#container {
+	position: relative;
+	height: 97vh; /* 100vh still gives a small vertical scroll. unsure where from, but 97vh eliminates it */
+	margin: 0;
+/*	border: 1px solid #ccc;*/
+}
+
+
+
+container > svg {
+	height: 97vh;
+	width: 99.2vw;
+/*	border: 1px solid #ccc;*/
+}
+
+/* -- nav ------------------------------------------------------------------------ */
+
+div#controls {
+	height: 3vh;
+
+/*	border: 1px solid #ccc;*/
+}
+
+div#points {
+	float: right;
+
+/*	border: 1px solid red;*/
+}
+
+div.navRight {
+	display: inline-block;
+	position: relative;
+	line-height: 3vh; /* to center vertically */
+	right: 1vw;
+	color: #555;
+	font-size: .9em;
+/*	border: 1px solid blue;*/
+}
+
+div#totallabel, div#flaglabel, div#flagcount, div#animallabel, div#animalcount {
+	top: -4px;
+/*	height: 3vh;*/
+}
+
+span.dash, span.total {
+	font-size: 85%;
+} /* span.dash doesn't want to get a changed font-size for some reason */
+
+
+button {
+	display: inline-block;
+	height: 80%;
+	margin: 0;
+	padding: .5em;
+	outline: none;
+	font-family: 'helsinki', sans-serif;
+	font-size: .6em;
+	color: #555;
+	background-color: rgba(255, 255, 255, .7);
+	border: none;
+	transition: all 0.3s ease;
+}
+
+button:hover {
+	background-color: rgba(21,40,130, .3);
+	color: #fff;
+	cursor: pointer;
+}
+
+/* -- map ------------------------------------------------------------------------ */
+
+svg.sphereDefs {
+	height: 0;
+	width: 0;
+	margin: 0;
+	padding: 0;
+}
+
+div.sphereDefs {
+	height: 0;
+	width: 0;
+	} /* svg.sqphereDefs shows even with width and height set to 0. So this dimension-less div wraps the svg and removes it from document flow */
+
+rect.world {
+	opacity: 0;
+}
+
+path.world:not(#sphere) {
+	stroke-width: .5px;
+	stroke: #aaa;
+	fill: #ccc;
+}
+
+path.selected {
+	fill: #FFED32; /* juicy yellow */
+}
+
+path.hovered {
+	opacity: 0.85;
+}
+
+
+/* -- elements -------------------------------------------------------------------- */
+
+div#elements, div#lockElements {
+	position: absolute; /* required to place it above svg */
+	display: inline-block; /* tried float, but can't set the height with vh float, so decided to use inline-block */
+
+	height: 75vh;
+	width: 15vw; /* this just encapsulates the absolutley positioned div.items in the div#elements. As they are taken out of the document-flow the div#elements would have no width otherwise */
+	top: 4vh; /* required to place it above svg */
+	right: 1vw; /* required to place it above svg */
+	
+	background: rgba(255,255,255,.2); /* setting the opacity using rgba only sets the opacity for this div and not for its children (the pictures/text) */
+	
+/*	border: 1px solid red;*/
+} 
+
+/* in order for this to work you need to set the height and the width of the #element in the JS-code when initialising the element */
+
+
+div#lockElements {
+	background: rgba(0,0,0,0);
+	z-index: 1;
+} /* this div gets created during the reprojection of the world (setOrginalMapState) to disallow parallel searches and cock-ups of zooms, pans and mainly decolouring   */
+
+
+div.item {
+	position: absolute;
+	margin: 10% 20%;
+}
+
+div.subitem {
+	margin-bottom: 2%;
+	color: #444;
+}
+
+
+/* -- collections ----------------------------------------------------------------- */
+
+div#collection, div#lockCollection {
+	position: absolute;
+	white-space: nowrap; /* elements won't wrap at the end of the line */
+	
+	height: 17vh;
+	width: 97.8vw;
+	
+	bottom: .5vh;
+	left: 1vh;
+
+/*	opacity gets set dynamically via rgba() created by dragend when first element found */
+	
+/*	border: 1px solid #ccc;*/
+}
+
+div#lockCollection {
+	background: rgba(0,0,0,0);
+	z-index: 1;
+} /* this div gets created during the reprojection of the world (setOrginalMapState) to disallow parallel searches and cock-ups of zooms, pans and mainly decolouring   */
+
+div#gradientFade {
+	
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 20%;
+	margin: 0;
+	padding: 0;
+	pointer-events: none;
+	z-index: 1;
+	
+	background-image: linear-gradient(to right, transparent, #D9EBFA);
+
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d9ebfa+0,d9ebfa+100&amp;0+0,1+100 */
+	background: -moz-linear-gradient(left,  rgba(217,235,250,0) 0%, rgba(217,235,250,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(217,235,250,0)), color-stop(100%,rgba(217,235,250,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  rgba(217,235,250,0) 0%,rgba(217,235,250,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  rgba(217,235,250,0) 0%,rgba(217,235,250,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  rgba(217,235,250,0) 0%,rgba(217,235,250,1) 100%); /* IE10+ */
+	background: linear-gradient(to right,  rgba(217,235,250,0) 0%,rgba(217,235,250,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00d9ebfa', endColorstr='#d9ebfa',GradientType=1 ); /* IE6-9 */
+
+
+	
+} /* div to fade out the collection items */
+
+div.subcollection {
+	position: relative;
+	overflow-x: scroll;
+}
+
+div#animalsCollection {
+}
+
+div.piece {
+	display: inline-block;
+	margin: .2em .5em;
+}
+
+div.subpiece {
+	text-align: center;	
+	opacity: .6; /* set opacity to get reduce the visual noise of the collected items. font-opacity = higher than image opacity */
+	color: #444;
+/*	border: 1px solid blue; */
+}
+
+img.subpiece {
+	display: block;  /*center*/
+	margin: .5rem auto; /*center*/
+	padding: 0 1em;
+	opacity: .4; /* set opacity to reduce the visual noise of the collected items. font-opacity = higher than image opacity */
+	
+	pointer-events: all; /* .subpieces as children of #collection with no pointer-events need to be set to 'all'. probably to be removed ! */
+	
+}
+
+/* -- stats ----------------------------------------------------------------------- */
+
+
+div#statistics {
+	
+	position: absolute;
+	top: -8px;
+	left: -8px; /* there's an 8px margin on body */
+	overflow: hidden;
+	height: 102.8vh;
+	width: 100vw;
+
+	background-color: rgba(255, 165, 0, 0); /* work with alpha to allow child to be less opaque than parent */
+
+}
+
+div#statsContainer {
+	
+	position: absolute;
+	top: 12.5vh;
+	left: 12.5vw;
+	height: 75vh;
+	width: 75vw;
+
+	/* flex parent properties */
+	display: flex;
+	flex-direction: column;
+		
+}
+
+nav#statsNav {
+	
+	/* flex children properties */
+	flex: 1 1 0; 
+	
+	/* flex parent properties */
+	display: flex; /* row layout, no wrap */
+	align-items: center; /* cross-axis (vertical) align */
+
+	background-color: rgba(255, 255, 255, .9); /* work with alpha to allow child to be less opaque than parent */
+	margin-bottom: 6px;
+	
+}
+
+button.statsBtn:first-of-type {
+
+	margin-left: 1em;
+
+}
+
+div.totalStats {
+	font-size: .6em;
+	color: #555;
+	margin-left: 2em;
+}
+
+img.statsBtn#close {
+	
+	height: 1em;
+	opacity: .7;
+
+	/* flex children properties */
+	margin-left: auto; /* to push it to the right */
+	margin-right: .5em;
+}
+
+div#statsWrapper {
+	
+	/* flex children properties */
+	flex: 12 1 0;
+
+	/* flex parent properties */
+	display: flex;
+	
+	background-color: none;
+	
+/*	border: 1px solid darkorange;*/
+	
+}
+
+div.graph {
+	
+	/* flex children properties */
+	flex: 1 1 auto;
+
+	/* flex parent properties */
+	display: flex; /*original*/
+	
+	background-color: rgba(255, 255, 255, .9); /* work with alpha to allow child to be less opaque than parent */
+
+	overflow-y: auto;
+	
+}
+
+div.graph:nth-child(1) {
+
+	margin-right: 3px;
+
+}
+
+div.graph:nth-child(2) {
+
+	margin-left: 3px;
+
+}
+
+svg.svgStats {
+
+	flex: 1;
+
+	
+}
+
+
+
+/* -- other ----------------------------------------------------------------------- */
+
+/* tooltips */
+
+div.tooltip {
+  position: absolute;        
+	display: inline-block;
+	max-width: 20vw;
+	padding: 5px;             
+  background-color: #fff;
+	border: 1px solid #999;
+	border-radius: 2px;
+	text-align: center;
+  pointer-events: none;
+	opacity: 0;
+	z-index: 2;
+}
+
+div.tooltip ul {
+	list-style-type: none;
+	padding: inherit;
+	margin: inherit;
+/*	text-align: left;*/
+}
+
+div.tooltip > ul > li:first-child, div.tooltip > ul > li:nth-child(3) {
+	margin-bottom: .2em;
+}
+
+div.tooltip > ul > li:nth-child(1n+2) {
+	font-size: 80%;
+	color: #333;
+}
+
+div.tooltip > ul > li > img {
+	height: 40px;
+	margin-top: 5px;
+}
+
+
+/* confirmation button */
+
+div#confirmEnd {
+
+  position: absolute;
+
+	width: 20vw;
+	height: 20vh;
+	left: 40vw;
+	top: 40vh; /* centre div on screen */
+
+  background: #fff;
+	border: 1px solid #999;
+	border-radius: 2px;
+	text-align: center;
+	opacity: 0; /* it'll get faded in */
+	z-index: 2;
+	
+	box-shadow: 1px 1px 2px #000;
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: column;
+	-ms-flex-flow: column;
+	flex-flow: column;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center; /* vertical align contents in columns */
+						
+} /* message box */
+
+div#btnConfirmWrapper {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: row;
+	-ms-flex-flow: row;
+	flex-flow: row;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center; /* create row layout for buttons and center them */
+
+	height: 2em;	
+
+} /* button wrapper */
+
+
+button.btnConfirm {
+	margin: 5px;
+	font-size: .8em;
+	background-color: rgba(204, 204, 204, .8);
+	
+} /* buttons (most rules from button css above) */
+
+button.btnConfirm:hover {
+	background-color: rgba(0,0,0, 1);
+
+} /* button hover (most rules from button css above) */
+
+
