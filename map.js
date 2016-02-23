@@ -182,8 +182,8 @@ function dataprep(err, worlddata, animaldata, countrytranslationdata) {
 		},
 		supernovaConfirm: {
 			question: {
-				English: 'Sure ? Yes ?',
-				German: 'Echt ?'
+				English: 'Do it', // change
+				German: 'Ja klicken' // change
 			},
 			button: {
 				yes: {
@@ -451,8 +451,11 @@ function dataprep(err, worlddata, animaldata, countrytranslationdata) {
 	// vis.collection.init() gets initialised in dragend when first element has been found;
 	vis.points.init();
 
-
 	// vis.stats.initContainer();
+
+	// kick off teh supernova - added
+	setTimeout(function(){ finalTurn1(); },2000);
+
 
 } // data and prep
 
@@ -1627,6 +1630,7 @@ d3.select('button#supernova').on('mousedown', function(){
 
 }); // kill the game and kick-off the supernova
 
+
 d3.select('button#stats').on('mousedown', function(){
 
 	vis.stats.initContainer();
@@ -2170,8 +2174,9 @@ function finalTurn1() {
 	// d3.select('#lingo')[0][0].disabled = true;
 
 	toggleButtons(true); // switch off (true) or on (false) all permanent buttons (this doesn't include the supernova confirm buttons)
-	d3.select('#btnYes')[0][0].disabled = true;
-	d3.select('#btnNo')[0][0].disabled = true; // disable all buttons
+	
+	if (d3.select('#btnYes')[0][0] !== null) d3.select('#btnYes')[0][0].disabled = true;
+	if (d3.select('#btnYes')[0][0] !== null) d3.select('#btnNo')[0][0].disabled = true; // disable all buttons if buttons exist (changed)
 
 	setStartMeasures(true);
 	
