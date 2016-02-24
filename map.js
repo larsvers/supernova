@@ -2167,65 +2167,70 @@ function finalTurn1() {
 
 	playFoundSound('supernova', 'zarathustra'); // play it
 	
-	// d3.select('#setElementCategory')[0][0].disabled = true;
-	// d3.select('#setProjection')[0][0].disabled = true;
-	// d3.select('#zoom')[0][0].disabled = true;
-	// d3.select('#supernova')[0][0].disabled = true;
-	// d3.select('#lingo')[0][0].disabled = true;
+	// wait until enough of zarathustra is loaded
+	d3.select('audio#audio').on('canplaythrough', function() {
 
-	toggleButtons(true); // switch off (true) or on (false) all permanent buttons (this doesn't include the supernova confirm buttons)
-	
-	if (d3.select('#btnYes')[0][0] !== null) d3.select('#btnYes')[0][0].disabled = true;
-	if (d3.select('#btnYes')[0][0] !== null) d3.select('#btnNo')[0][0].disabled = true; // disable all buttons if buttons exist (changed)
+		// d3.select('#setElementCategory')[0][0].disabled = true;
+		// d3.select('#setProjection')[0][0].disabled = true;
+		// d3.select('#zoom')[0][0].disabled = true;
+		// d3.select('#supernova')[0][0].disabled = true;
+		// d3.select('#lingo')[0][0].disabled = true;
 
-	setStartMeasures(true);
-	
-	var distance = 360; // absolute distance from start- to end-angle
-	var velocity = .01675	; // .01675
-
-	setSMILanim(true); // kick off SMIL animation
-	
-	d3.selectAll('div#confirmEnd')
-		.transition()
-		.duration(5000)
-		.style('opacity', 0)
-		.remove();
-
-	d3.selectAll('div#controls, div#elements, div#collection')
-		.transition()
-		.duration(5000)
-		.style('opacity', 0);
-
-	d3.select('body')
-		.transition()
-		.duration(10000)
-		.style('background-color', '#000');
+		toggleButtons(true); // switch off (true) or on (false) all permanent buttons (this doesn't include the supernova confirm buttons)
 		
+		if (d3.select('#btnYes')[0][0] !== null) d3.select('#btnYes')[0][0].disabled = true;
+		if (d3.select('#btnYes')[0][0] !== null) d3.select('#btnNo')[0][0].disabled = true; // disable all buttons if buttons exist (changed)
 
-	d3.selectAll('path.world:not(#sphere)')
-		.transition()
-		.duration(10000)
-		.delay(7500)
-		.style('fill', '#fff')
-		.style('stroke', '#fff');
+		setStartMeasures(true);
 		
-  d3.timer(function(elapsed) {
+		var distance = 360; // absolute distance from start- to end-angle
+		var velocity = .01675	; // .01675
 
-    var angle = (velocity * elapsed); // number increases continuously from 0
+		setSMILanim(true); // kick off SMIL animation
+		
+		d3.selectAll('div#confirmEnd')
+			.transition()
+			.duration(5000)
+			.style('opacity', 0)
+			.remove();
 
-    g.project[g.project.type]
-			.scale(startScale + angle*1.5)
-			.rotate([(startYaw + angle),(startPitch + angle),(startRoll + angle)]); // need to  get current angle from projection.rotate()[0]
+		d3.selectAll('div#controls, div#elements, div#collection')
+			.transition()
+			.duration(5000)
+			.style('opacity', 0);
 
-		d3.selectAll('g.boundary path').attr('d', g.path.projection(g.project[g.project.type])); // re-render path (by above positive increments)
+		d3.select('body')
+			.transition()
+			.duration(10000)
+			.style('background-color', '#000');
+			
 
-		if (Math.abs(angle) > Math.abs(distance)) {
-			setStartMeasures(false);
-			finalTurn2();
-			return true;
-		}
+		d3.selectAll('path.world:not(#sphere)')
+			.transition()
+			.duration(10000)
+			.delay(7500)
+			.style('fill', '#fff')
+			.style('stroke', '#fff');
+			
+	  d3.timer(function(elapsed) {
 
-  });
+	    var angle = (velocity * elapsed); // number increases continuously from 0
+
+	    g.project[g.project.type]
+				.scale(startScale + angle*1.5)
+				.rotate([(startYaw + angle),(startPitch + angle),(startRoll + angle)]); // need to  get current angle from projection.rotate()[0]
+
+			d3.selectAll('g.boundary path').attr('d', g.path.projection(g.project[g.project.type])); // re-render path (by above positive increments)
+
+			if (Math.abs(angle) > Math.abs(distance)) {
+				setStartMeasures(false);
+				finalTurn2();
+				return true;
+			}
+
+	  }); // d3.timer
+
+	}); // oncanplaythrough listener on zarathustra, to wait for song to be playable
 
 } // final spin 1
 
